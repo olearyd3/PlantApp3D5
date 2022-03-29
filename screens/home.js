@@ -1,5 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, Dimensions, View, Button } from 'react-native';
+import { globalStyles } from '../styles/global';
+import * as Animatable from 'react-native-animatable';
+import { AlignCenter } from 'react-native-feather';
+import { AntDesign } from '@expo/vector-icons';
 
 const Home = ({ navigation }) => {
 
@@ -9,13 +13,25 @@ const Home = ({ navigation }) => {
 
     return (
         <View style ={styles.container}>
-            <View style={styles.header}>
+            <View style={{flexDirection: "row"}}>
+                <TouchableOpacity onPress={pressHandler}>
+                        <View style={styles.iconView}>
+                            <AntDesign name="user" style={styles.icon} size={20}/>
+                            <Text style={styles.iconText}>Profile</Text>
+                        </View>
+                </TouchableOpacity>
                 <Text style={styles.text_header}>Home</Text>
+                <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+                        <View style={styles.iconView}>
+                            <AntDesign name="poweroff" style={styles.icon} size={20}/>
+                            <Text style={styles.iconText}>Log Out</Text>
+                        </View>
+                </TouchableOpacity>
             </View>
-            <View style={styles.footer}>
-                <Text style={styles.titleText}>Home Screen</Text>
-                <Button title='Go to Profile Page' onPress={pressHandler} />
-                <Button title='Log Out?' onPress={() => navigation.navigate('Login')}/>
+            <View>
+                <Animatable.Image animation="bounceIn"duraton="1500"source={require('../assets/shelf.jpg')}style={styles.logo} resizeMode="contain"/>
+                <Animatable.Image animation="bounceIn"duraton="1500"source={require('../assets/shelf.jpg')}style={styles.logo} resizeMode="contain"/>
+                <Animatable.Image animation="bounceIn"duraton="1500"source={require('../assets/shelf.jpg')}style={styles.logo} resizeMode="contain"/>
             </View>
         </View>
     );
@@ -23,16 +39,54 @@ const Home = ({ navigation }) => {
 
 export default Home;
 
+const {height} = Dimensions.get("screen");
+const width_shelf = height * 0.42;
+const height_shelf = height * 0.275;
+
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#009387',
+      backgroundColor: '#ffffff',
+      padding: 20,
+    },
+    logo: {
+        width: width_shelf,
+        height: height_shelf,
+        alignItems: 'center'
     },
     titleText: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#333',
     }, 
+    iconView: {
+        backgroundColor: 'teal',
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 5,
+        color: 'white',
+        fontWeight: 'bold',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    iconText: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    icon: {
+        color: 'white',
+        fontWeight: 'bold',
+        alignItems: 'center'
+    },
+    textSign: {
+        backgroundColor: 'teal',
+        borderRadius: 10,
+        paddingVertical: 20,
+        paddingHorizontal: 5,
+        color: 'white',
+        fontWeight: 'bold',
+        justifyContent: 'center'
+    },
     header: {
         flex: 1,
         justifyContent: 'flex-end',
@@ -40,9 +94,13 @@ const styles = StyleSheet.create({
         paddingBottom: 30
     },
     text_header: {
-        color: '#fff',
+        color: 'black',
         fontWeight: 'bold',
-        fontSize: 30,
+        justifyContent: 'center',
+        fontSize: 40,
+        flex: 1,
+        paddingHorizontal: 20,
+        marginBottom: 15,
         textAlign: 'center'
     },
     footer: {

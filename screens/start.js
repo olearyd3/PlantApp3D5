@@ -10,23 +10,10 @@ const Start = ({navigation}) => {
       <View style={styles.container}>
           <StatusBar backgroundColor='#009387' barStyle="light-content"/>
         <View style={styles.header}>
-            <Animatable.Image 
-                animation="bounceIn"
-                duraton="1500"
-            source={require('../assets/theme1flowerpot.jpg')}
-            style={styles.logo}
-            resizeMode="stretch"
-            />
+            <Animatable.Image animation="bounceIn"duraton="1500"source={require('../assets/theme1flowerpot.jpg')}style={styles.logo} resizeMode="stretch"/>
         </View>
-        <Animatable.View 
-            style={[styles.footer, {
-                backgroundColor: colors.background
-            }]}
-            animation="fadeInUpBig"
-        >
-            <Text style={[styles.title, {
-                color: colors.text
-            }]}>Start growing your indoor plant collection today!</Text>
+        <Animatable.View style={[styles.footer, {backgroundColor: colors.background}]} animation="fadeInUpBig">
+            <Text style={[styles.title, {color: colors.text}]}>Start growing your indoor plant collection today!</Text>
             <View style={styles.button}>
             <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
                     <Text style={styles.textSign}>Get Started</Text>
