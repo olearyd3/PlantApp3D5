@@ -10,7 +10,10 @@ const Home = ({ navigation }) => {
     const pressHandler = () => {
         navigation.push('Profile');
     }
-
+    const dimensions = Dimensions.get('window');
+    const shelfHeight = Math.round(dimensions.width * 9/16);
+    const shelfWidth = dimensions.width;
+    
     return (
         <View style ={styles.container}>
             <View style={{flexDirection: "row"}}>
