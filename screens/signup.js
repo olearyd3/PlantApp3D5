@@ -5,7 +5,6 @@ import * as Animatable from 'react-native-animatable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
 const SignUp = ({ navigation }) => {
 
     const [data, setData] = React.useState({
@@ -16,7 +15,16 @@ const SignUp = ({ navigation }) => {
         secureTextEntry: true,
         confirmSecureTextEntry: true
     });
-
+    const handleSignUp = () => {
+        auth
+          .createUserWithEmailAndPassword(data.email, data.password)
+          .then((userCredentials) => {
+              const user = userCredentials.user;
+              console.log("Registered with:", user.email);
+              nav.navigate('Login')
+          })
+          .catch((error) => alert(error.message));
+      };
     const textInputChange = (val) => {
         if(val.length != 0) {
             setData({
@@ -102,7 +110,7 @@ const SignUp = ({ navigation }) => {
                 </View>
 
                 <View style={styles.button}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Login')} >
+                    <TouchableOpacity onPress={handleSignUp} >
                         <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Make my account!</Text>
                     </TouchableOpacity>
                 </View>
