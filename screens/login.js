@@ -5,6 +5,7 @@ import * as Animatable from 'react-native-animatable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = ({ navigation }) => {
 
@@ -14,6 +15,18 @@ const Login = ({ navigation }) => {
         check_textInputChange: false,
         secureTextEntry: true
     });
+
+    const handleLogIn = () => {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth,data.email, data.password)
+        .then((userCredentials) => {
+            // THIS IS THE RESPONSE OF SUCCESSFULL FIREBASE LOGIN
+            console.log('Successfull login by:' + data.email)
+            const user = userCredentials.user;
+        })
+        .catch((error) => {alert(error.message)});
+    };
+    
 
     const textInputChange = (val) => {
         if(val.length != 0) {
@@ -75,7 +88,9 @@ const Login = ({ navigation }) => {
                 </View>
 
                 <View style={styles.button}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')} >
+                    <TouchableOpacity onPress={() => {
+                        handleLogIn();
+                        navigation.navigate('Home')}} >
                         <Text style={[styles.textSign, {paddingHorizontal: 15}]}>Log In</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('SignUp')} >

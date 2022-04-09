@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, Dimensions, View, Button } from 'react-native';
 import { globalStyles } from '../styles/global';
 import * as Animatable from 'react-native-animatable';
-import { AlignCenter } from 'react-native-feather';
 import { AntDesign } from '@expo/vector-icons';
 
 const Home = ({ navigation }) => {
