@@ -1,22 +1,33 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import {* as firebase} from "firebase/app";
+//import * as firebase from "firebase/compat";
+/*
+import { getAuth } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+*/
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { getAuth, onAuthStateChanged, getRedirectResult } from 'firebase/auth';
+//import "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDbGrWO2KNhhpt-236R3gEyznsObMkGImY",
-  authDomain: "plant-app-3d5.firebaseapp.com",
-  databaseURL: "https://plant-app-3d5-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "plant-app-3d5",
-  storageBucket: "plant-app-3d5.appspot.com",
-  messagingSenderId: "288665693220",
-  appId: "1:288665693220:web:331d9339655daf9f27bcb1",
-  measurementId: "G-B0336EH8YC"
+  apiKey: "AIzaSyDAG-HjgZy-H3tdXCNyF2MIJ4Yk-7TuxVg",
+  authDomain: "fir-auth-7a211.firebaseapp.com",
+  projectId: "fir-auth-7a211",
+  storageBucket: "fir-auth-7a211.appspot.com",
+  messagingSenderId: "208933733316",
+  appId: "1:208933733316:web:43a9bbfb30090cc225da91"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const app = firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.getAuth;
+
+
+
+export { auth };
+

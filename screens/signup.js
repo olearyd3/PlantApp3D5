@@ -1,10 +1,15 @@
+// import MobileDatePicker from '@mui/lab/MobileDatePicker';
+// import TextField from '@mui/material/TextField';
 import React, { isValidElement } from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { globalStyles } from '../styles/global';
 import * as Animatable from 'react-native-animatable';
+import { useNavigation } from "@react-navigation/native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { auth } from "../firebase"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp = ({ navigation }) => {
 
@@ -16,6 +21,18 @@ const SignUp = ({ navigation }) => {
         secureTextEntry: true,
         confirmSecureTextEntry: true
     });
+
+    // CALL THIS FUNCTION TO REGISTER USERS ON FIREBASE
+    const handleSignUp = () => {
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth,data.email, data.password)
+        .then((userCredentials) => {
+            // THIS IS THE RESPONSE OF SUCCESSFULL FIREBASE LOGIN
+            console.log('Successfull login by:' + data.email)
+            const user = userCredentials.user;
+        })
+        .catch((error) => {alert(error.message)});
+    };
 
     const textInputChange = (val) => {
         if(val.length != 0) {
@@ -102,7 +119,9 @@ const SignUp = ({ navigation }) => {
                 </View>
 
                 <View style={styles.button}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Login')} >
+                <TouchableOpacity onPress={() => {
+                    handleSignUp();
+                    navigation.navigate('Login')}} > 
                         <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Make my account!</Text>
                     </TouchableOpacity>
                 </View>

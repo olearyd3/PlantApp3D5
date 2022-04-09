@@ -1,7 +1,8 @@
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Alert} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, Alert, Button, Image, Platform} from 'react-native';
 import { globalStyles } from '../styles/global';
-import { Fontisto, Ionicons, AntDesign } from '@expo/vector-icons';
+import { Fontisto, Ionicons, AntDesign, MaterialIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 
 
 const Profile = ({ navigation }) => {
@@ -21,9 +22,30 @@ const Profile = ({ navigation }) => {
             }
         ]
     );
+    const [image, setImage] = useState(null);
+
+        useEffect( async() => {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if(status !== 'granted') {
+                alert('Permission was not granted!')
+            }
+        }, [])
+
+    const PickImage = async() => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4,3],
+            quality: 1
+        })
+        console.log(result)
+        if(!result.cancelled) {
+            setImage(result.uri)
+        }
+    }
         return (
             <View style={globalStyles.container}>
-                <View style={{flexDirection: "row"}}>
+                <View style={{flexDirection: "row", paddingBottom: 40}}>
                     <TouchableOpacity onPress={pressHandler}>
                             <View style={styles.iconView}>
                                 <Ionicons name="home-outline" style={styles.icon} size={20}/>
@@ -38,16 +60,34 @@ const Profile = ({ navigation }) => {
                             </View>
                     </TouchableOpacity>
                 </View>
-                <View>
-                <TouchableOpacity title={"Streak Alert"} onPress={createStreakAlert}>
-                      <View style={styles.iconView}>
+                <View style={[styles.picUpload, {alignItems: 'center', justifyContent: 'center'}]}>
+                    <TouchableOpacity title={"Upload a Profile Picture"} onPress={PickImage}>
+                    <View>
+                        {image && <Image source={{uri:image}} style={{
+                            width:300,
+                            height:300,
+                            borderRadius: 300/2
+                        }}/>}
+                        <View style={{justifyContent: 'center', textAlign: 'center'}}>
+                            <MaterialIcons name="add-circle-outline" style={styles.icon} size={20}/>
+                            <Text style={styles.iconText}>Upload a Profile Picture!</Text>
+                        </View>
+                    </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={{flex:1}}>
+                    <Text style={styles.fillerText}></Text>
+                </View>
+                <View style={styles.streakStyle}>
+                    <TouchableOpacity title={"Streak Alert"} onPress={createStreakAlert}>
+                        <View style={styles.iconView}>
                             <View style={{flexDirection: "row"}}>
                                 <Fontisto name="fire" style={styles.streakIcon} size={20}/>
                                 <Text style={styles.iconText}>  1</Text>
                             </View>
                             <Text style={styles.iconText}>Current Streak</Text>
-                      </View>
-              </TouchableOpacity>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
       );
@@ -59,6 +99,9 @@ const Profile = ({ navigation }) => {
         flex: 1, 
         backgroundColor: '#ffffff',
         padding: 20,
+      },
+      fillerText: {
+        color: '#333'
       },
       logo: {
           alignItems: 'center'
@@ -76,11 +119,27 @@ const Profile = ({ navigation }) => {
           color: 'white',
           fontWeight: 'bold',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          borderWidth: 3,
+          borderColor: 'lightsteelblue'
+      },
+      picUpload: {
+          width: 300,
+          height: 300,
+          borderRadius: 300/2,
+          borderWidth: 3,
+          borderColor: 'teal',
+          backgroundColor: '#fbe4d6',
+          alignItems: 'center',
+          justifyContent: 'center',
       },
       iconText: {
           color: 'white',
           fontWeight: 'bold',
+      },
+      streakStyle: {
+        bottom: 0, 
+        position: 'relative'
       },
       streakIcon: {
         color: '#FC6A03',
@@ -91,6 +150,11 @@ const Profile = ({ navigation }) => {
           color: 'white',
           fontWeight: 'bold',
           alignItems: 'center'
+      },
+      addPicIcon: {
+        color: 'teal',
+        //fontWeight: 'bold',
+        alignItems: 'center'
       },
       textSign: {
           backgroundColor: 'teal',
