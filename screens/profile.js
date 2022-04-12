@@ -68,9 +68,9 @@ const Profile = ({ navigation }) => {
                     <TouchableOpacity title={"Upload a Profile Picture"} onPress={PickImage}>
                     <View style={styles.picUpload}>
                         {image && <Image source={{uri:image}} style={{
-                            width:290,
-                            height:290,
-                            borderRadius: 290/2
+                            width:200,
+                            height:200,
+                            borderRadius: 200/2
                         }}/>}
                     </View>
                     </TouchableOpacity>
@@ -86,7 +86,7 @@ const Profile = ({ navigation }) => {
                     <View>
                         <View style={styles.subUserText}>
                             <Text style={styles.headings}>          Leaderboard      </Text>
-                            <Fontisto name="fire" style={{size: 20, color:'#FC6A03',fontWeight: 'bold'}} size={20}/>
+                            <Fontisto name="fire" style={{color:'#FC6A03',fontWeight: 'bold'}} size={20}/>
                         </View>
                         <View style={{paddingTop: 5}}>
                             <View style={styles.userText}>
@@ -151,7 +151,7 @@ const Profile = ({ navigation }) => {
                     <TouchableOpacity title={"Streak Alert"} onPress={createStreakAlert}>
                         <View style={styles.iconView}>
                             <View style={{flexDirection: "row"}}>
-                                <Fontisto name="fire" style={styles.streakIcon} size={20}/>
+                                <Fontisto name="fire" size={20} style={styles.streakIcon}/>
                                 <Text style={styles.iconText}>  1</Text>
                             </View>
                             <Text style={styles.iconText}>Current Streak</Text>
