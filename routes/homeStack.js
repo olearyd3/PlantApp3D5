@@ -4,7 +4,8 @@ import Profile from '../screens/profile';
 import Start from '../screens/start';
 import Login from '../screens/login';
 import SignUp from '../screens/signup';
-
+import Plant from '../screens/plant';
+import ForgotPassword from '../screens/ForgotPassword';
 const Stack = createStackNavigator();
 export default function RootStack() {
     return (
@@ -23,6 +24,11 @@ export default function RootStack() {
             options={{headerShown: false}}
         />
         <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPassword}
+            options={{headerShown: false}}
+        />
+        <Stack.Screen
             name="SignUp"
             component={SignUp}
             options={{headerShown: false}}
@@ -35,6 +41,11 @@ export default function RootStack() {
         <Stack.Screen
             name="Profile"
             component={Profile}
+            options={{headerShown: false}}
+        />
+        <Stack.Screen
+            name="Plant"
+            component={Plant}
             options={{headerShown: false}}
         />
     </Stack.Navigator>
