@@ -1,11 +1,13 @@
 import React, { isValidElement } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput,Image,ImageBackground} from 'react-native';
 import { globalStyles } from '../styles/global';
 import * as Animatable from 'react-native-animatable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import image from "../assets/addplant.jpg";
+
 
 const Login = ({ navigation }) => {
 
@@ -59,10 +61,22 @@ const Login = ({ navigation }) => {
     }
 
     return (
-        <View style ={styles.container}>
-            <View style={styles.header}>
-            <Text style={styles.text_header}>Login Screen</Text>
-            </View>
+       
+             
+           <ImageBackground
+           source={require('../assets/gg.jpg')}
+           imageStyle= {{opacity:0.5}}
+           style ={styles.container}>
+            
+            <View style={styles.overlayContainer}>
+        <View style ={styles.top}>
+            <Text style ={styles.header}>LOGIN</Text>
+    
+        </View>
+        
+    
+            
+
             <View style={styles.footer}>
                 <Text style={styles.text_footer}>Email:</Text>
                 <View style={styles.action}>
@@ -70,10 +84,11 @@ const Login = ({ navigation }) => {
                     <TextInput placeholder="Enter your email" style={styles.textInput} autoCapitalize="none" onChangeText={(val) => textInputChange(val)}/>
                     {data.check_textInputChange ? 
                         <Animatable.View delay={200} animation="fadeIn">
-                            <Ionicons name="checkmark-circle-outline" size={20} color="#50C878" />
+                            <Ionicons name="checkmark-circle-outline" size={20} color="#008000" />
                         </Animatable.View>
                     : null}
                 </View>
+               
                 <Text style={[styles.text_footer, {marginTop: 10}]}>Password:</Text>
                 <View style={styles.action}>
                     <AntDesign name="lock" size={20} style={styles.icon_styles}/>
@@ -91,7 +106,10 @@ const Login = ({ navigation }) => {
                     <TouchableOpacity onPress={() => {
                         handleLogIn();
                         navigation.navigate('Home')}} >
-                        <Text style={[styles.textSign, {paddingHorizontal: 15}]}>Log In</Text>
+                        <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Log In</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')} >
+                        <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Forgot Password</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('SignUp')} >
                         <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Sign Up</Text>
@@ -100,6 +118,8 @@ const Login = ({ navigation }) => {
                 </View>
             </View>
         </View>
+        </ImageBackground>
+    
     );
 };
 
@@ -108,33 +128,48 @@ export default Login;
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#009387'
+      width:'100%',
+      height : '100%'
+
     },
+    overlayContainer:{
+        flex:1,
+        
+    },
+    top:{
+        height:'40%',
+        alignItems : 'center',
+        justifyContent:'center',
+    },
+
     header: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        paddingHorizontal: 20,
-        paddingBottom: 50
+        color : '#000',
+        fontSize :32,
+      //  fontStyle: 'sans-serif',
+        fontWeight:'bold',
+        padding:20,
+        paddingLeft :40,
+        paddingRight:40,
+        backgroundColor:'rgba(255,255,255,.1)'
+        
     },
     footer: {
-        flex: 3,
-        backgroundColor: '#fff',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        paddingHorizontal: 20,
-        paddingVertical: 30
+        color : 'white',
+        fontSize :28,
+        padding: 10
     },
-    text_header: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 30
-    },
+   
     text_footer: {
-        color: '#05375a',
-        fontSize: 18
+        color: 'black',
+        fontSize: 18,
+        marginLeft:35,
+        marginEnd:35,
+        paddingTop:9
     },
+    
+    
     icon_styles: {
-        color: "#05375A",
+        color: "black",
         paddingRight: 10
     },
     action: {
@@ -154,7 +189,9 @@ const styles = StyleSheet.create({
     textInput: {
         flex: 1,
         paddingLeft: 10,
-        color: '#05375a',
+        color: 'black'
+       
+        
     },
     errorMsg: {
         color: '#FF0000',
@@ -165,22 +202,30 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     login: {
-        width: '100%',
+        width: '50%',
         height: 50,
+        marginLeft : '30',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 10
+        borderRadius: 10,
+        borderWidth : 10,
+        borderBottomColor:'black'
+        
     },
     textSign: {
-        backgroundColor: 'teal',
+        backgroundColor: '#ddd',
         borderRadius: 10,
+        paddingHorizontal:0,
         paddingVertical: 10,
         marginBottom: 10,
-        color: 'white',
-        fontWeight: 'bold'
+        color: 'black',
+        fontWeight: 'bold',
+        marginEnd:60,
+        marginLeft:60
+
     },
     smallPrint: {
         fontSize: 12,
-        color: '#A9A9A9'
+        color: 'black'
     }
   });

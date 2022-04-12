@@ -1,7 +1,7 @@
 // import MobileDatePicker from '@mui/lab/MobileDatePicker';
 // import TextField from '@mui/material/TextField';
 import React, { isValidElement } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { Image, StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { globalStyles } from '../styles/global';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from "@react-navigation/native";
@@ -10,6 +10,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { auth } from "../firebase"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import logoLeft from '../assets/theme1heartplant.jpg';
 
 const SignUp = ({ navigation }) => {
 
@@ -78,42 +79,41 @@ const SignUp = ({ navigation }) => {
 
     return (
         <View style ={styles.container}>
-            <View style={styles.header}>
-            <Text style={styles.text_header}>Create Your Account!</Text>
+            <Image source ={require('../assets/plantworld.jpg')}
+                    style={{width:"100%",height:"43%"}}
+                />  
+            <View style={styles.header}>       
+            <Text style={styles.text_header}>Create New Account</Text>
             </View>
             <View style={styles.footer}>
-                <Text style={styles.text_footer}>Email:</Text>
                 <View style={styles.action}>
                     <Ionicons name="mail-outline" size={20} style={styles.icon_styles}/>
-                    <TextInput placeholder="Enter your email" style={styles.textInput} autoCapitalize="none" onChangeText={(val) => textInputChange(val)}/>
+                    <TextInput placeholder="Email" placeholderTextColor={'white'} style={styles.textInput} autoCapitalize="none" onChangeText={(val) => textInputChange(val)}/>
                     {data.check_textInputChange ? 
                         <Animatable.View delay={200} animation="fadeIn">
-                            <Ionicons name="checkmark-circle-outline" size={20} color="#50C878" />
+                            <Ionicons name="checkmark-circle-outline" size={20} style={styles.checkmark} />
                         </Animatable.View>
                     : null}
                 </View>
-                <Text style={[styles.text_footer, {marginTop: 10}]}>Password:</Text>
                 <View style={styles.action}>
                     <AntDesign name="lock" size={20} style={styles.icon_styles}/>
-                    <TextInput placeholder="Enter your password" secureTextEntry={data.secureTextEntry ? true : false} style={styles.textInput} autoCapitalize="none" onChangeText={(val) => handlePasswordChange(val)}/>
+                    <TextInput placeholder="Password" placeholderTextColor={'white'} secureTextEntry={data.secureTextEntry ? true : false} style={styles.textInput} autoCapitalize="none" onChangeText={(val) => handlePasswordChange(val)}/>
                     <TouchableOpacity onPress={updateSecureTextEntry}>
                         {data.secureTextEntry ?
-                            <Ionicons name="eye-off-outline" size={20} color="grey" />
+                            <Ionicons name="eye-off-outline" size={20} style={styles.icon_styles} />
                         :
-                            <Ionicons name="eye-outline" size={20} color="grey" />
+                            <Ionicons name="eye-outline" size={20} style={styles.icon_styles} />
                         }
                     </TouchableOpacity>
                 </View>
-                
-                <Text style={[styles.text_footer, {marginTop: 10}]}>Confirm Your Password:</Text>
                 <View style={styles.action}>
                     <AntDesign name="lock" size={20} style={styles.icon_styles}/>
-                    <TextInput placeholder="Confirm your password" secureTextEntry={data.confirmSecureTextEntry ? true : false} style={styles.textInput} autoCapitalize="none" onChangeText={(val) => handleConfirmPasswordChange(val)}/>
+                    <TextInput placeholder="Confirm Password" placeholderTextColor={'white'} secureTextEntry={data.confirmSecureTextEntry ? true : false} style={styles.textInput} autoCapitalize="none" onChangeText={(val) => handleConfirmPasswordChange(val)}/>
                     <TouchableOpacity onPress={updateConfirmSecureTextEntry}>
                         {data.confirmSecureTextEntry ?
-                            <Ionicons name="eye-off-outline" size={20} color="grey" />
+                            <Ionicons name="eye-off-outline" size={20} style={styles.icon_styles} />
                         :
-                            <Ionicons name="eye-outline" size={20} color="grey" />
+                            <Ionicons name="eye-outline" size={20} style={styles.icon_styles} />
                         }
                     </TouchableOpacity>
                 </View>
@@ -122,7 +122,14 @@ const SignUp = ({ navigation }) => {
                 <TouchableOpacity onPress={() => {
                     handleSignUp();
                     navigation.navigate('Login')}} > 
-                        <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Make my account!</Text>
+                        <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Create account</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={styles.button2}>
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('Login')}} > 
+                        <Text style={[styles.textSign2, {paddingHorizontal: 10}]}>Already have an account? Sign in</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -133,55 +140,69 @@ const SignUp = ({ navigation }) => {
 export default SignUp;
 
 const styles = StyleSheet.create({
+    logoleft: {
+        width: 97, 
+        height: 109
+    },
     container: {
-      flex: 1, 
-      backgroundColor: '#009387'
+        flex: 1, 
+        backgroundColor: '#fff'
     },
     header: {
-        flex: 1,
-        justifyContent: 'flex-end',
+        alignItems: 'center',
         paddingHorizontal: 20,
-        paddingBottom: 50
+        paddingBottom: 40
     },
     footer: {
         flex: 3,
-        backgroundColor: '#fff',
+        backgroundColor: 'teal',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         paddingHorizontal: 20,
-        paddingVertical: 30
+        paddingVertical: 20
     },
     text_header: {
-        color: '#fff',
+        color: 'teal',
         fontWeight: 'bold',
         fontSize: 30
     },
     text_footer: {
-        color: '#05375a',
+        color: 'white',
         fontSize: 18
     },
     icon_styles: {
-        color: "#05375A",
-        paddingRight: 10
+        color: "white",
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingVertical: 5
+    },
+    checkmark: {
+        color: "#50C878",
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingVertical: 5
     },
     action: {
         flexDirection: 'row',
-        marginTop: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#f2f2f2',
-        paddingBottom: 5
+        marginTop: 15,
+        borderWidth: 2,
+        borderColor: 'white',
+        borderRadius: 23,
+        padding: 5
     },
     actionError: {
         flexDirection: 'row',
-        marginTop: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#FF0000',
-        paddingBottom: 5
+        marginTop: 15,
+        borderWidth: 2,
+        borderColor: 'white',
+        borderRadius: 23,
+        padding: 5
     },
     textInput: {
         flex: 1,
         paddingLeft: 10,
-        color: '#05375a',
+        color: 'white',
+        fontWeight: 'bold'
     },
     errorMsg: {
         color: '#FF0000',
@@ -189,7 +210,10 @@ const styles = StyleSheet.create({
     },
     button: {
         textAlign: 'center',
-        marginTop: 20
+        marginTop: 30
+    },
+    button2: {
+        textAlign: 'center'
     },
     login: {
         width: '100%',
@@ -199,11 +223,24 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     textSign: {
-        backgroundColor: 'teal',
-        borderRadius: 10,
+        backgroundColor: 'white',
+        borderRadius: 23,
         paddingVertical: 10,
         marginBottom: 10,
+        color: 'teal',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: 20
+    },
+    textSign2: {
+        backgroundColor: 'teal',
+        borderRadius: 23,
+        paddingVertical: 15,
+        marginBottom: 10,
         color: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: 15
     }
+    
   });

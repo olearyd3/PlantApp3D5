@@ -3,13 +3,20 @@ import { StyleSheet, TouchableOpacity, Text, Dimensions, View, Button } from 're
 import { globalStyles } from '../styles/global';
 import * as Animatable from 'react-native-animatable';
 import { AntDesign } from '@expo/vector-icons';
+import { CurrentRenderContext } from '@react-navigation/native';
+
+
+const Add = (position) => {
+
+    return position
+}
 
 const Home = ({ navigation }) => {
 
     const pressHandler = () => {
         navigation.push('Profile');
     }
-
+    
     return (
         <View style ={styles.container}>
             <View style={{flexDirection: "row"}}>
@@ -20,6 +27,11 @@ const Home = ({ navigation }) => {
                         </View>
                 </TouchableOpacity>
                 <Text style={styles.text_header}>Home</Text>
+                <TouchableOpacity onPress={()=>navigation.navigate('Plant')}>
+                <View style={styles.iconView}>
+                            <Text style={styles.add}>Add</Text>
+                        </View>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
                         <View style={styles.iconView}>
                             <AntDesign name="poweroff" style={styles.icon} size={20}/>
@@ -109,5 +121,14 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 30,
         paddingHorizontal: 20,
         paddingVertical: 30
+    },
+    add: {
+        flex:1,
+        justifyContent: 'center',
+        alignContent: 'center',
+        color: 'white',
+        fontWeight:'bold',
+        textAlign: 'center',
+        fontSize: 25,
     },
 });
