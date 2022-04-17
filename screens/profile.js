@@ -68,9 +68,9 @@ const Profile = ({ navigation }) => {
                     <TouchableOpacity title={"Upload a Profile Picture"} onPress={PickImage}>
                     <View style={styles.picUpload}>
                         {image && <Image source={{uri:image}} style={{
-                            width:200,
-                            height:200,
-                            borderRadius: 200/2
+                            width:194,
+                            height:194,
+                            borderRadius: 194/2
                         }}/>}
                     </View>
                     </TouchableOpacity>

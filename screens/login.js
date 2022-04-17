@@ -23,10 +23,10 @@ const Login = ({ navigation }) => {
         signInWithEmailAndPassword(auth,data.email, data.password)
         .then((userCredentials) => {
             // THIS IS THE RESPONSE OF SUCCESSFULL FIREBASE LOGIN
-            console.log('Successfull login by:' + data.email)
+            console.log('Successful login by:' + data.email)
             const user = userCredentials.user;
         })
-        .catch((error) => {alert(error.message)});
+       // .catch((error) => {alert(error.message)});
     };
     
 

@@ -29,7 +29,7 @@ const SignUp = ({ navigation }) => {
         createUserWithEmailAndPassword(auth,data.email, data.password)
         .then((userCredentials) => {
             // THIS IS THE RESPONSE OF SUCCESSFULL FIREBASE LOGIN
-            console.log('Successfull login by:' + data.email)
+            console.log('Successful login by:' + data.email)
             const user = userCredentials.user;
         })
         .catch((error) => {alert(error.message)});
@@ -129,7 +129,7 @@ const SignUp = ({ navigation }) => {
                 <View style={styles.button2}>
                 <TouchableOpacity onPress={() => {
                     navigation.navigate('Login')}} > 
-                        <Text style={[styles.textSign2, {paddingHorizontal: 10}]}>Already have an account? Sign in</Text>
+                        <Text style={[styles.textSign2, {paddingHorizontal: 10}]}>Already have an account? Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>

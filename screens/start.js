@@ -15,7 +15,7 @@ const Start = ({navigation}) => {
         <Animatable.View style={[styles.footer, {backgroundColor: colors.background}]} animation="fadeInUpBig">
             <Text style={[styles.title, {color: colors.text}]}>Start growing your indoor plant collection today!</Text>
             <View style={styles.button}>
-            <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+            <TouchableOpacity onPress={()=>navigation.navigate('SignUp')}>
                     <Text style={styles.textSign}>Get Started</Text>
             </TouchableOpacity>
             </View>

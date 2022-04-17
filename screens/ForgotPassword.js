@@ -23,7 +23,7 @@ const ForgotPassword = ({ navigation }) => {
             console.log('Recovery email sent ' + data.email)
             const user = userCredentials.user;
         })
-        .catch((error) => {alert(error.message)});
+        //.catch((error) => {alert(error.message)});
     };
     
 
