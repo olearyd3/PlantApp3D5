@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, TextInput, Component, TouchableOpacity, Image, Text, ImageBackground, View, Alert } from 'react-native';
+import { StyleSheet, TextInput, Component, TouchableOpacity, Image, Text, ImageBackground, View, Alert, Modal, Pressable} from 'react-native';
 import { globalStyles } from '../styles/global';
 import * as Animatable from 'react-native-animatable';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import { globalVars } from '../styles/global';
 
 import addImg from '../assets/addplant.jpg';
@@ -136,6 +136,9 @@ const Home = ({ navigation }) => {
             }
         ]
     );
+
+    const [modalVisible, setModalVisible] = React.useState(false);
+    
     return (
         <View style ={styles.container}>
             <View style={{flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
@@ -155,11 +158,34 @@ const Home = ({ navigation }) => {
                         </View>
                 </TouchableOpacity>
             </View>
+            <View>
+                <Modal animationType='slide' transparent={true} visible={modalVisible} onRequestClose={() => {
+                    Alert.alert('Modal has been closed'); setModalVisible(!modalVisible);
+                }}>
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalText}>Needs to be watered in 22 hours!</Text>
+                            <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}>
+                            <Text style={styles.iconText}>OK!</Text>
+                            </Pressable>
+                        </View>
+                    </View>
+                </Modal>
+            </View>
             <View style={{flex: 3}}>
-                <View >
+                <View>
                     <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, paddingLeft: 10, paddingRight: 10}}>
                         <View>
                             <TouchableOpacity onPress={()=> {updatePlantSelect(); console.log(plant.counter)}}>
+                                {plant.counter >= 2 && plantName.check_textInputChange == true ?
+                                <Pressable onPress={() => setModalVisible(true)}>
+                                    <MaterialCommunityIcons name='watering-can' size={30} style={{color: '#708090'}}/>
+                                </Pressable>
+                                :
+                                <Text></Text>
+                                }
                                 {/*if plantSelect is true then have the + logo, if false have the plant*/}
                                 {plant.plantSelect && plant.counter < 2 ?
                                 <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
@@ -170,6 +196,13 @@ const Home = ({ navigation }) => {
                         </View>
                         <View>
                             <TouchableOpacity onPress={updatePlant2Select}>
+                                {plant.counter2 >= 2 && plantName.check_textInputChange == true ?
+                                <Pressable onPress={() => setModalVisible(true)}>
+                                    <MaterialCommunityIcons name='watering-can' size={30} style={{color: '#708090'}}/>
+                                </Pressable>    
+                                :
+                                <Text></Text>
+                                }
                                 {plant.plant2Select && plant.counter2 < 2 ?
                                 <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
                                 :
@@ -179,6 +212,13 @@ const Home = ({ navigation }) => {
                         </View>
                         <View>
                             <TouchableOpacity onPress={updatePlant3Select}>
+                                {plant.counter3 >= 2 && plantName.check_textInputChange == true ?
+                                <Pressable onPress={() => setModalVisible(true)}>
+                                    <MaterialCommunityIcons name='watering-can' size={30} style={{color: '#708090'}}/>
+                                </Pressable>
+                                :
+                                <Text></Text>
+                                }
                                 {plant.plant3Select && plant.counter3 < 2 ?
                                 <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
                                 :
@@ -216,55 +256,83 @@ const Home = ({ navigation }) => {
             <View style={{flex: 3}}>
                 <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10}}>
                     <TouchableOpacity onPress={updatePlant4Select}>
+                        {plant.counter4 >= 2 && plantName.check_textInputChange == true ?
+                            <Pressable onPress={() => setModalVisible(true)}>
+                                <MaterialCommunityIcons name='watering-can' size={30} style={{color: '#708090'}}/>
+                            </Pressable>
+                            :
+                            <Text></Text>
+                        }   
                         {plant.plant4Select && plant.counter4 < 2 ?
-                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                        :
-                        <Image source={require('../assets/theme1tallplant.jpg')} style={styles.tallPlantOnShelf}></Image>
+                            <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                            :
+                            <Image source={require('../assets/theme1tallplant.jpg')} style={styles.tallPlantOnShelf}></Image>
                         }
                     </TouchableOpacity>
                     <TouchableOpacity onPress={updatePlant5Select}>
+                        {plant.counter5 >= 2 && plantName.check_textInputChange == true ?
+                            <Pressable onPress={() => setModalVisible(true)}>
+                                <MaterialCommunityIcons name='watering-can' size={30} style={{color: '#708090'}}/>
+                            </Pressable>
+                            :
+                            <Text></Text>
+                        }
                         {plant.plant5Select && plant.counter5 < 2 ?
-                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                        :
-                        <Image source={require('../assets/theme1heartplant.jpg')} style={styles.heartPlantOnShelf}></Image>
+                            <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                            :
+                            <Image source={require('../assets/theme1heartplant.jpg')} style={styles.heartPlantOnShelf}></Image>
                         }
                     </TouchableOpacity>
                     <TouchableOpacity onPress={updatePlant6Select}>
+                        {plant.counter6 >= 2 && plantName.check_textInputChange == true ?
+                            <Pressable onPress={() => setModalVisible(true)}>
+                                <MaterialCommunityIcons name='watering-can' size={30} style={{color: '#708090'}}/>
+                            </Pressable>
+                            :
+                            <Text></Text>
+                        }
                         {plant.plant6Select && plant.counter6 < 2 ?
-                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                        :
-                        <Image source={require('../assets/theme1threeleafplant.jpg')} style={styles.threeLeafPlant}></Image>
+                            <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                            :
+                            <Image source={require('../assets/theme1threeleafplant.jpg')} style={styles.threeLeafPlant}></Image>
                         }
                     </TouchableOpacity>
                 </View>
                 <View style={{paddingBottom: 50, paddingTop: 30}}>
                     <ImageBackground source={require('../assets/shelf.jpg')} style={styles.logo} />
                     {plant.counter4 >= 2 ?
-                    <View style={{position: 'absolute', top: -5, left: 0, right: 0, bottom: 0}}>
-                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                    </View>
-                    :
-                    <Text></Text>
+                        <View style={{position: 'absolute', top: -5, left: 0, right: 0, bottom: 0}}>
+                            <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                        </View>
+                        :
+                        <Text></Text>
                     }
                     {plant.counter5 >= 2 ?
-                    <View style={{position: 'absolute', top: -5, left: 140, right: 0, bottom: 0}}>
-                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                    </View>
-                    :
-                    <Text></Text>
+                        <View style={{position: 'absolute', top: -5, left: 140, right: 0, bottom: 0}}>
+                            <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                        </View>
+                        :
+                        <Text></Text>
                     }
                     {plant.counter6 >= 2 ?
-                    <View style={{position: 'absolute', top: -5, left: 270, right: 0, bottom: 0}}>
-                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                    </View>
-                    :
-                    <Text></Text>
+                        <View style={{position: 'absolute', top: -5, left: 270, right: 0, bottom: 0}}>
+                            <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                        </View>
+                        :
+                        <Text></Text>
                     }
                 </View> 
             </View>
             <View style={{flex:3}}>
                 <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10}}>
                     <TouchableOpacity onPress={updatePlant7Select}>
+                        {plant.counter7 >= 2 && plantName.check_textInputChange == true ?
+                            <Pressable onPress={() => setModalVisible(true)}>
+                                <MaterialCommunityIcons name='watering-can' size={30} style={{color: '#708090'}}/>
+                            </Pressable>
+                            :
+                            <Text></Text>
+                        }
                         {plant.plant7Select && plant.counter7 < 2 ?
                         <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
                         :
@@ -272,13 +340,27 @@ const Home = ({ navigation }) => {
                         }
                     </TouchableOpacity>
                     <TouchableOpacity onPress={updatePlant8Select}>
+                        {plant.counter8 >= 2 && plantName.check_textInputChange == true ?
+                            <Pressable onPress={() => setModalVisible(true)}>
+                                <MaterialCommunityIcons name='watering-can' size={30} style={{color: '#708090'}}/>
+                            </Pressable>
+                            :
+                            <Text></Text>
+                        }
                         {plant.plant8Select && plant.counter8 < 2 ?
-                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                        :
-                        <Image source={require('../assets/theme1flowerpot.jpg')} style={styles.plantOnShelf}></Image>
+                            <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                            :
+                            <Image source={require('../assets/theme1flowerpot.jpg')} style={styles.plantOnShelf}></Image>
                         }
                     </TouchableOpacity>
                     <TouchableOpacity onPress={updatePlant9Select}>
+                        {plant.counter9 >= 2 && plantName.check_textInputChange == true ?
+                            <Pressable onPress={() => setModalVisible(true)}>
+                                <MaterialCommunityIcons name='watering-can' size={30} style={{color: '#708090'}}/>
+                            </Pressable>
+                            :
+                            <Text></Text>
+                        }
                         {plant.plant9Select && plant.counter9 < 2 ?
                         <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
                         :
@@ -448,5 +530,50 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         color: 'white',
         fontWeight: 'bold',
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+    },
+    buttonOpen: {
+        backgroundColor: '#66cdaa',
+    },
+    buttonClose: {
+        backgroundColor: '#2196F3',
+    },
+    textStyle: {
+        color: 'teal',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    textWater: {
+        color: 'teal',
+        fontWeight: 'bold',
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: 'center',
     },
 });
