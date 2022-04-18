@@ -49,7 +49,7 @@ const Profile = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../assets/plantbackground.jpg')} resizeMode="cover" style={styles.image}>
-                <View style={{flexDirection: "row", paddingBottom: 40}}>
+                <View style={{flexDirection: "row", paddingBottom: 10, flex: 1}}>
                     <TouchableOpacity onPress={pressHandler}>
                             <View style={styles.iconView}>
                                 <Ionicons name="home-outline" style={styles.icon} size={20}/>
@@ -64,88 +64,85 @@ const Profile = ({ navigation }) => {
                             </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <TouchableOpacity title={"Upload a Profile Picture"} onPress={PickImage}>
-                    <View style={styles.picUpload}>
-                        {image && <Image source={{uri:image}} style={{
-                            width:194,
-                            height:194,
-                            borderRadius: 194/2
-                        }}/>}
+                <View style={{flex: 4, justifyContent: 'flex-start'}}>
+                    <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                        <TouchableOpacity title={"Upload a Profile Picture"} onPress={PickImage}>
+                        <View style={styles.picUpload}>
+                            {image && <Image source={{uri:image}} style={{
+                                width:200,
+                                height:200,
+                                borderRadius: 200/2
+                            }}/>}
+                        </View>
+                        </TouchableOpacity>
                     </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={{paddingTop: 1}}>
-                    <TouchableOpacity title={"Upload a Profile Picture"} onPress={PickImage}>
-                        <View style={styles.iconView}>
-                            <Text style={styles.iconText}>Upload a new profile picture</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <View>
-                        <View style={styles.subUserText}>
-                            <Text style={styles.headings}>          Leaderboard      </Text>
-                            <Fontisto name="fire" style={{color:'#FC6A03',fontWeight: 'bold'}} size={20}/>
-                        </View>
-                        <View style={{paddingTop: 5}}>
-                            <View style={styles.userText}>
-                                <Image
-                                    style={styles.tinyLogo}
-                                    source={require('../assets/theme1flowerpot.jpg')}
-                                />
-                                <Text style={styles.username}>          Siobhán </Text>
-                                <Text style={styles.username}>          10 </Text>
+                    <View style={{paddingTop: 6}}>
+                        <TouchableOpacity title={"Upload a Profile Picture"} onPress={PickImage}>
+                            <View style={styles.iconView}>
+                                <Text style={styles.iconText}>Upload a new profile picture</Text>
                             </View>
-                            <View style={styles.userText}>
-                                <Image
-                                    style={styles.tinyLogo}
-                                    source={require('../assets/theme1heartplant.jpg')}
-                                />
-                                <Text style={styles.username}>          David </Text>
-                                <Text style={styles.username}>                9 </Text>
-                            </View>
-
-                            <View style={styles.userText}>
-                                <Image
-                                    style={styles.tinyLogo}
-                                    source={require('../assets/plantworld.jpg')}
-                                />
-                                <Text style={styles.username}>          Nipun </Text>
-                                <Text style={styles.username}>               9</Text>
-                            </View>
-
-                            <View style={styles.userText}>
-                                <Image
-                                    style={styles.tinyLogo}
-                                    source={require('../assets/wateringcan.jpg')}
-                                />
-                                <Text style={styles.username}>          Paraic </Text>
-                                <Text style={styles.username}>              8</Text>
-                            </View>
-
-                            <View style={styles.userText}>
-                                <Image
-                                    style={styles.tinyLogo}
-                                    source={require('../assets/usr_pic.png')}
-                                />
-                                <Text style={styles.username}>          Archit </Text>
-                                <Text style={styles.username}>               7</Text>
-                            </View>
-
-                            <View style={styles.userText}>
-                                <Image
-                                    style={styles.tinyLogo}
-                                    source={require('../assets/theme2tallplant.jpg')}
-                                />
-                                <Text style={styles.username}>          Ryan </Text>
-                                <Text style={styles.username}>                7</Text>
-                            </View>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.fillerText}></Text>
+                <View style={{flex: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FDDFDF', borderColor: 'teal', borderWidth: 5, marginLeft: 60, marginRight: 60, marginTop: 10, marginBottom: 10}}>
+                    <View style={styles.subUserText}>
+                        <Text style={styles.headings}>         Leaderboard       </Text>
+                        <Fontisto name="fire" style={{color:'#FC6A03',fontWeight: 'bold'}} size={20}/>
+                    </View>
+                    <View style={{paddingTop: 5, alignItems: 'flex-end'}}>
+                        <View style={styles.userText}>
+                            <Image
+                                style={styles.tinyLogo}
+                                source={require('../assets/theme1flowerpot.jpg')}
+                            />
+                            <Text style={styles.username}>            Siobhán               </Text>
+                            <Text style={styles.username}>9</Text>
+                        </View>
+                        <View style={styles.userText}>
+                            <Image
+                                style={styles.tinyLogo}
+                                source={require('../assets/theme1heartplant.jpg')}
+                            />
+                            <Text style={styles.username}>            Stephen               </Text>
+                            <Text style={styles.username}>9</Text>
+                        </View>
+
+                        <View style={styles.userText}>
+                            <Image
+                                style={styles.tinyLogo}
+                                source={require('../assets/plantworld.jpg')}
+                            />
+                            <Text style={styles.username}>            Meranie               </Text>
+                            <Text style={styles.username}>9</Text>
+                        </View>
+
+                        <View style={styles.userText}>
+                            <Image
+                                style={styles.tinyLogo}
+                                source={require('../assets/wateringcan.jpg')}
+                            />
+                            <Text style={styles.username}>            Kinnane               </Text>
+                            <Text style={styles.username}>8</Text>
+                        </View>
+
+                        <View style={styles.userText}>
+                            <Image
+                                style={styles.tinyLogo}
+                                source={require('../assets/usr_pic.png')}
+                            />
+                            <Text style={styles.username}>            Stefania               </Text>
+                            <Text style={styles.username}>7</Text>
+                        </View>
+
+                        <View style={styles.userText}>
+                            <Image
+                                style={styles.tinyLogo}
+                                source={require('../assets/theme2tallplant.jpg')}
+                            />
+                            <Text style={styles.username}>            Caoinne               </Text>
+                            <Text style={styles.username}>7</Text>
+                        </View>
+                    </View>
                 </View>
                 <View style={styles.streakStyle}>
                     <TouchableOpacity title={"Streak Alert"} onPress={createStreakAlert}>
@@ -197,9 +194,9 @@ const styles = StyleSheet.create({
         borderColor: 'lightsteelblue'
     },
     picUpload: {
-        width: 200,
-        height: 200,
-        borderRadius: 200/2,
+        width: 208,
+        height: 208,
+        borderRadius: 208/2,
         borderWidth: 3,
         borderColor: 'teal',
         backgroundColor: '#fbe4d6',
@@ -212,7 +209,8 @@ const styles = StyleSheet.create({
     },
     streakStyle: {
         bottom: 0, 
-        position: 'relative'
+        position: 'relative',
+        flex: 1
     },
     streakIcon: {
         color: '#FC6A03',
@@ -271,17 +269,16 @@ const styles = StyleSheet.create({
         paddingBottom: 7.5
         //marginVertical: 15,
       },
-      fixToText: {
+    fixToText: {
         flexDirection: 'row',
         justifyContent: 'center',
-      },
-      userText: {
+    },
+    userText: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
-        paddingLeft: 20,
+        alignItems: 'center',
         paddingBottom: 5,
-      },
-      subUserText: {
+    },
+    subUserText: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
         paddingLeft: 20,
@@ -289,25 +286,25 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         borderBottomColor: 'black',
         borderBottomWidth: 2,
-        borderBottomLeftRadius: 30
-      },
-      username: {
+
+    },
+    username: {
         //marginTop: 45,
         textAlign: 'center',
         fontSize: 16,
-      },
-      headings: {
+    },
+    headings: {
         //marginTop: 45,
         textAlign: 'center',
         paddingBottom:2,
         fontWeight: 'bold',
         fontSize: 18,
-      },
-      tinyLogo: {
+    },
+    tinyLogo: {
         borderRadius: 28/2,
         width: 28,
         height: 28,
         borderWidth: 1,
         borderColor: 'teal',
-      }
+    }
 });

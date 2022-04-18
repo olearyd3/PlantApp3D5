@@ -138,14 +138,16 @@ const Home = ({ navigation }) => {
     );
     return (
         <View style ={styles.container}>
-            <View style={{flexDirection: "row"}}>
+            <View style={{flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                 <TouchableOpacity onPress={pressHandler}>
                         <View style={styles.iconView}>
                             <AntDesign name="user" style={styles.icon} size={20}/>
                             <Text style={styles.iconText}>Profile</Text>
                         </View>
                 </TouchableOpacity>
-                <Text style={styles.text_header}>Home</Text>
+                <View style={{flexDirection: "column"}}>
+                    <Image source={require('../assets/shelflife.jpg')}></Image>
+                </View>
                 <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
                         <View style={styles.iconView}>
                             <AntDesign name="poweroff" style={styles.icon} size={20}/>
@@ -153,157 +155,163 @@ const Home = ({ navigation }) => {
                         </View>
                 </TouchableOpacity>
             </View>
-            <View>
-                <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, paddingLeft: 10, paddingRight: 10}}>
-                    <View>
-                        <TouchableOpacity onPress={()=> {updatePlantSelect(); console.log(plant.counter)}}>
-                            {/*if plantSelect is true then have the + logo, if false have the plant*/}
-                            {plant.plantSelect && plant.counter < 2 ?
-                            <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                            :
-                            <Image source={require('../assets/theme1heartplant.jpg')} style={styles.heartPlantOnShelf}></Image>
-                            }
-                        </TouchableOpacity>
+            <View style={{flex: 3}}>
+                <View >
+                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, paddingLeft: 10, paddingRight: 10}}>
+                        <View>
+                            <TouchableOpacity onPress={()=> {updatePlantSelect(); console.log(plant.counter)}}>
+                                {/*if plantSelect is true then have the + logo, if false have the plant*/}
+                                {plant.plantSelect && plant.counter < 2 ?
+                                <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                                :
+                                <Image source={require('../assets/theme1heartplant.jpg')} style={styles.heartPlantOnShelf}></Image>
+                                }
+                            </TouchableOpacity>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={updatePlant2Select}>
+                                {plant.plant2Select && plant.counter2 < 2 ?
+                                <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                                :
+                                <Image source={require('../assets/theme1fiveleaves.jpg')} style={styles.tallPlantOnShelf}></Image>
+                                }
+                            </TouchableOpacity>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={updatePlant3Select}>
+                                {plant.plant3Select && plant.counter3 < 2 ?
+                                <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                                :
+                                <Image source={require('../assets/theme1flowerpot.jpg')} style={styles.plantOnShelf}></Image>
+                                }
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View>
-                        <TouchableOpacity onPress={updatePlant2Select}>
-                            {plant.plant2Select && plant.counter2 < 2 ?
-                            <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                            :
-                            <Image source={require('../assets/theme1fiveleaves.jpg')} style={styles.tallPlantOnShelf}></Image>
-                            }
-                        </TouchableOpacity>
+                </View> 
+                <View style={{paddingBottom: 50, paddingTop: 30,}}>
+                    <ImageBackground source={require('../assets/shelf.jpg')} style={styles.logo} />
+                    {plant.counter >= 2 ?
+                    <View style={{position: 'absolute', top: -5, left: 10, right: 0, bottom: 0}}>
+                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
                     </View>
-                    <View>
-                        <TouchableOpacity onPress={updatePlant3Select}>
-                            {plant.plant3Select && plant.counter3 < 2 ?
-                            <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                            :
-                            <Image source={require('../assets/theme1flowerpot.jpg')} style={styles.plantOnShelf}></Image>
-                            }
-                        </TouchableOpacity>
+                    :
+                    <Text></Text>
+                    }
+                    {plant.counter2 >= 2 ?
+                    <View style={{position: 'absolute', top: -5, left: 120, right: 0, bottom: 0}}>
+                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
                     </View>
+                    :
+                    <Text></Text>
+                    }
+                    {plant.counter3 >= 2 ?
+                    <View style={{position: 'absolute', top: -5, left: 240, right: 0, bottom: 0}}>
+                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                    </View>
+                    :
+                    <Text></Text>
+                    }
                 </View>
-            </View> 
-            <View style={{paddingBottom: 50, paddingTop: 30}}>
-                <ImageBackground source={require('../assets/shelf.jpg')} style={styles.logo} />
-                {plant.counter >= 2 ?
-                <View style={{position: 'absolute', top: -5, left: 10, right: 0, bottom: 0}}>
-                    <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                </View>
-                :
-                <Text></Text>
-                }
-                {plant.counter2 >= 2 ?
-                <View style={{position: 'absolute', top: -5, left: 130, right: 0, bottom: 0}}>
-                    <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                </View>
-                :
-                <Text></Text>
-                }
-                {plant.counter3 >= 2 ?
-                <View style={{position: 'absolute', top: -5, left: 250, right: 0, bottom: 0}}>
-                    <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                </View>
-                :
-                <Text></Text>
-                }
             </View>
-            <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10}}>
-                <TouchableOpacity onPress={updatePlant4Select}>
-                    {plant.plant4Select && plant.counter4 < 2 ?
-                    <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+            <View style={{flex: 3}}>
+                <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10}}>
+                    <TouchableOpacity onPress={updatePlant4Select}>
+                        {plant.plant4Select && plant.counter4 < 2 ?
+                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                        :
+                        <Image source={require('../assets/theme1tallplant.jpg')} style={styles.tallPlantOnShelf}></Image>
+                        }
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={updatePlant5Select}>
+                        {plant.plant5Select && plant.counter5 < 2 ?
+                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                        :
+                        <Image source={require('../assets/theme1heartplant.jpg')} style={styles.heartPlantOnShelf}></Image>
+                        }
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={updatePlant6Select}>
+                        {plant.plant6Select && plant.counter6 < 2 ?
+                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                        :
+                        <Image source={require('../assets/theme1threeleafplant.jpg')} style={styles.threeLeafPlant}></Image>
+                        }
+                    </TouchableOpacity>
+                </View>
+                <View style={{paddingBottom: 50, paddingTop: 30}}>
+                    <ImageBackground source={require('../assets/shelf.jpg')} style={styles.logo} />
+                    {plant.counter4 >= 2 ?
+                    <View style={{position: 'absolute', top: -5, left: 0, right: 0, bottom: 0}}>
+                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                    </View>
                     :
-                    <Image source={require('../assets/theme1tallplant.jpg')} style={styles.tallPlantOnShelf}></Image>
+                    <Text></Text>
                     }
-                </TouchableOpacity>
-                <TouchableOpacity onPress={updatePlant5Select}>
-                    {plant.plant5Select && plant.counter5 < 2 ?
-                    <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                    {plant.counter5 >= 2 ?
+                    <View style={{position: 'absolute', top: -5, left: 140, right: 0, bottom: 0}}>
+                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                    </View>
                     :
-                    <Image source={require('../assets/theme1heartplant.jpg')} style={styles.heartPlantOnShelf}></Image>
+                    <Text></Text>
                     }
-                </TouchableOpacity>
-                <TouchableOpacity onPress={updatePlant6Select}>
-                    {plant.plant6Select && plant.counter6 < 2 ?
-                    <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                    {plant.counter6 >= 2 ?
+                    <View style={{position: 'absolute', top: -5, left: 270, right: 0, bottom: 0}}>
+                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                    </View>
                     :
-                    <Image source={require('../assets/theme1threeleafplant.jpg')} style={styles.threeLeafPlant}></Image>
+                    <Text></Text>
                     }
-                </TouchableOpacity>
+                </View> 
             </View>
-            <View style={{paddingBottom: 50, paddingTop: 30}}>
-                <ImageBackground source={require('../assets/shelf.jpg')} style={styles.logo} />
-                {plant.counter4 >= 2 ?
-                <View style={{position: 'absolute', top: -5, left: 10, right: 0, bottom: 0}}>
-                    <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+            <View style={{flex:3}}>
+                <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10}}>
+                    <TouchableOpacity onPress={updatePlant7Select}>
+                        {plant.plant7Select && plant.counter7 < 2 ?
+                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                        :
+                        <Image source={require('../assets/theme1tallplant.jpg')} style={styles.tallPlantOnShelf}></Image>
+                        }
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={updatePlant8Select}>
+                        {plant.plant8Select && plant.counter8 < 2 ?
+                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                        :
+                        <Image source={require('../assets/theme1flowerpot.jpg')} style={styles.plantOnShelf}></Image>
+                        }
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={updatePlant9Select}>
+                        {plant.plant9Select && plant.counter9 < 2 ?
+                        <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
+                        :
+                        <Image source={require('../assets/theme1fiveleaves.jpg')} style={styles.tallPlantOnShelf}></Image>
+                        }
+                    </TouchableOpacity>
                 </View>
-                :
-                <Text></Text>
-                }
-                {plant.counter5 >= 2 ?
-                <View style={{position: 'absolute', top: -5, left: 130, right: 0, bottom: 0}}>
-                    <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                <View style={{ paddingTop: 30}}>
+                    <ImageBackground source={require('../assets/shelf.jpg')} style={styles.logo} />
+                    {plant.counter7 >= 2 ?
+                    <View style={{position: 'absolute', top: -5, left: 0, right: 0, bottom: 0}}>
+                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                    </View>
+                    :
+                    <Text></Text>
+                    }
+                    {plant.counter8 >= 2 ?
+                    <View style={{position: 'absolute', top: -5, left: 130, right: 0, bottom: 0}}>
+                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                    </View>
+                    :
+                    <Text></Text>
+                    }
+                    {plant.counter9 >= 2 ?
+                    <View style={{position: 'absolute', top: -5, left: 265, right: 0, bottom: 0}}>
+                        <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
+                    </View>
+                    :
+                    <Text></Text>
+                    }
                 </View>
-                :
-                <Text></Text>
-                }
-                {plant.counter6 >= 2 ?
-                <View style={{position: 'absolute', top: -5, left: 270, right: 0, bottom: 0}}>
-                    <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                </View>
-                :
-                <Text></Text>
-                }
-            </View> 
-            <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10}}>
-                <TouchableOpacity onPress={updatePlant7Select}>
-                    {plant.plant7Select && plant.counter7 < 2 ?
-                    <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                    :
-                    <Image source={require('../assets/theme1threeleafplant.jpg')} style={styles.threeLeafPlant}></Image>
-                    }
-                </TouchableOpacity>
-                <TouchableOpacity onPress={updatePlant8Select}>
-                    {plant.plant8Select && plant.counter8 < 2 ?
-                    <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                    :
-                    <Image source={require('../assets/theme1flowerpot.jpg')} style={styles.plantOnShelf}></Image>
-                    }
-                </TouchableOpacity>
-                <TouchableOpacity onPress={updatePlant9Select}>
-                    {plant.plant9Select && plant.counter9 < 2 ?
-                    <Image source={require('../assets/addplant.jpg')}style={styles.tinyLogo}></Image>
-                    :
-                    <Image source={require('../assets/theme1fiveleaves.jpg')} style={styles.tallPlantOnShelf}></Image>
-                    }
-                </TouchableOpacity>
             </View>
-            <View style={{ paddingTop: 30}}>
-                <ImageBackground source={require('../assets/shelf.jpg')} style={styles.logo} />
-                {plant.counter7 >= 2 ?
-                <View style={{position: 'absolute', top: -5, left: 10, right: 0, bottom: 0}}>
-                    <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                </View>
-                :
-                <Text></Text>
-                }
-                {plant.counter8 >= 2 ?
-                <View style={{position: 'absolute', top: -5, left: 130, right: 0, bottom: 0}}>
-                    <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                </View>
-                :
-                <Text></Text>
-                }
-                {plant.counter9 >= 2 ?
-                <View style={{position: 'absolute', top: -5, left: 270, right: 0, bottom: 0}}>
-                    <TextInput placeholder="Plant name"style={styles.textInput} onChangeText={(val) => textInputChange(val)}/>
-                </View>
-                :
-                <Text></Text>
-                }
-            </View>
-            <View>
+            <View style={{flex: 1,}}>
                 <TouchableOpacity title={"Info"} onPress={createHomeAlert}>
                     <View style={styles.bannerStyle}>
                         <Text style={styles.iconText}>Info</Text>
@@ -392,7 +400,6 @@ const styles = StyleSheet.create({
         paddingVertical: 30
     },
     add: {
-        flex:1,
         justifyContent: 'center',
         alignContent: 'center',
         color: 'white',

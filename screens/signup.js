@@ -1,7 +1,7 @@
 // import MobileDatePicker from '@mui/lab/MobileDatePicker';
 // import TextField from '@mui/material/TextField';
 import React, { isValidElement } from 'react';
-import { Image, StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { Image, StyleSheet, Text, View, Button, TextInput, ImageBackground } from 'react-native';
 import { globalStyles } from '../styles/global';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from "@react-navigation/native";
@@ -79,11 +79,16 @@ const SignUp = ({ navigation }) => {
 
     return (
         <View style ={styles.container}>
-            <Image source ={require('../assets/plantworld.jpg')}
-                    style={{width:"100%",height:"43%"}}
-                />  
-            <View style={styles.header}>       
-            <Text style={styles.text_header}>Create New Account</Text>
+            <View style={styles.header}> 
+                <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 30}}>
+                    <Image style={{width: 265, height: 100}} source={require('../assets/shelflife.jpg')}/>
+                </View>
+                    <Image source ={require('../assets/plantworld.jpg')}
+                        style={{width:450,height:193.5}}
+                    />     
+                <View style={{justifyContent: 'flex-end' }}> 
+                    <Text style={styles.text_header}>Create New Account</Text>
+                </View>  
             </View>
             <View style={styles.footer}>
                 <View style={styles.action}>
@@ -149,12 +154,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     header: {
+        flex: 7,
         alignItems: 'center',
+        justifyContent: 'space-between',
         paddingHorizontal: 20,
-        paddingBottom: 40
+        paddingBottom: 10
     },
     footer: {
-        flex: 3,
+        flex: 6,
         backgroundColor: 'teal',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
@@ -164,7 +171,7 @@ const styles = StyleSheet.create({
     text_header: {
         color: 'teal',
         fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 30,
     },
     text_footer: {
         color: 'white',

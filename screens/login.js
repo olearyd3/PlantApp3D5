@@ -60,66 +60,56 @@ const Login = ({ navigation }) => {
         })
     }
 
-    return (
-       
-             
-           <ImageBackground
-           source={require('../assets/gg.jpg')}
-           imageStyle= {{opacity:0.5}}
-           style ={styles.container}>
-            
+    return ( 
+        <ImageBackground
+            source={require('../assets/gg.jpg')}
+            imageStyle= {{opacity:0.5}}
+            style ={styles.container}>    
             <View style={styles.overlayContainer}>
-        <View style ={styles.top}>
-            <Text style ={styles.header}>LOGIN</Text>
-    
-        </View>
-        
-    
-            
-
-            <View style={styles.footer}>
-                <Text style={styles.text_footer}>Email:</Text>
-                <View style={styles.action}>
-                    <Ionicons name="mail-outline" size={20} style={styles.icon_styles}/>
-                    <TextInput placeholder="Enter your email" style={styles.textInput} autoCapitalize="none" onChangeText={(val) => textInputChange(val)}/>
-                    {data.check_textInputChange ? 
-                        <Animatable.View delay={200} animation="fadeIn">
-                            <Ionicons name="checkmark-circle-outline" size={20} color="#008000" />
-                        </Animatable.View>
-                    : null}
+                <View style ={styles.top}>
+                    
+                    <Text style ={styles.header}>LOGIN</Text>  
                 </View>
-               
-                <Text style={[styles.text_footer, {marginTop: 10}]}>Password:</Text>
-                <View style={styles.action}>
-                    <AntDesign name="lock" size={20} style={styles.icon_styles}/>
-                    <TextInput placeholder="Enter your password" secureTextEntry={data.secureTextEntry ? true : false} style={styles.textInput} autoCapitalize="none" onChangeText={(val) => handlePasswordChange(val)}/>
-                    <TouchableOpacity onPress={updateSecureTextEntry}>
-                        {data.secureTextEntry ?
-                            <Ionicons name="eye-off-outline" size={20} color="grey" />
-                        :
-                            <Ionicons name="eye-outline" size={20} color="grey" />
-                        }
-                    </TouchableOpacity>
-                </View>
-
-                <View style={styles.button}>
-                    <TouchableOpacity onPress={() => {
-                        handleLogIn();
-                        navigation.navigate('Home')}} >
-                        <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Log In</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')} >
-                        <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Forgot Password</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')} >
-                        <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Sign Up</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.smallPrint}>New? Click 'Sign up' to make your account and get started today!</Text>
+                <View style={styles.footer}>
+                    <Text style={styles.text_footer}>Email:</Text>
+                    <View style={styles.action}>
+                        <Ionicons name="mail-outline" size={20} style={styles.icon_styles}/>
+                        <TextInput placeholder="Enter your email" style={styles.textInput} autoCapitalize="none" onChangeText={(val) => textInputChange(val)}/>
+                        {data.check_textInputChange ? 
+                            <Animatable.View delay={200} animation="fadeIn">
+                                <Ionicons name="checkmark-circle-outline" size={20} color="#008000" />
+                            </Animatable.View>
+                        : null}
+                    </View>
+                    <Text style={[styles.text_footer, {marginTop: 10}]}>Password:</Text>
+                    <View style={styles.action}>
+                        <AntDesign name="lock" size={20} style={styles.icon_styles}/>
+                        <TextInput placeholder="Enter your password" secureTextEntry={data.secureTextEntry ? true : false} style={styles.textInput} autoCapitalize="none" onChangeText={(val) => handlePasswordChange(val)}/>
+                        <TouchableOpacity onPress={updateSecureTextEntry}>
+                            {data.secureTextEntry ?
+                                <Ionicons name="eye-off-outline" size={20} color="grey" />
+                            :
+                                <Ionicons name="eye-outline" size={20} color="grey" />
+                            }
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.button}>
+                        <TouchableOpacity onPress={() => {
+                            handleLogIn();
+                            navigation.navigate('Home')}} >
+                            <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Log In</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')} >
+                            <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Forgot Password</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('SignUp')} >
+                            <Text style={[styles.textSign, {paddingHorizontal: 10}]}>Sign Up</Text>
+                        </TouchableOpacity>
+                        <Text style={styles.smallPrint}>New? Click 'Sign up' to make your account and get started today!</Text>
+                    </View>
                 </View>
             </View>
-        </View>
         </ImageBackground>
-    
     );
 };
 

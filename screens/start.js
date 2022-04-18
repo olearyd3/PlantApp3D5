@@ -10,10 +10,11 @@ const Start = ({navigation}) => {
       <View style={styles.container}>
           <StatusBar backgroundColor='#009387' barStyle="light-content"/>
         <View style={styles.header}>
+            <Image style={{height: 80, width: 232}} source={require('../assets/shelflife.jpg')}></Image>
             <Animatable.Image animation="bounceIn"duraton="1500"source={require('../assets/theme1flowerpot.jpg')}style={styles.logo} resizeMode="stretch"/>
         </View>
         <Animatable.View style={[styles.footer, {backgroundColor: colors.background}]} animation="fadeInUpBig">
-            <Text style={[styles.title, {color: colors.text}]}>Start growing your indoor plant collection today!</Text>
+            <Text style={[styles.title, {color: colors.text}]}>Start growing your indoor plant collection on Shelf Life today!</Text>
             <View style={styles.button}>
             <TouchableOpacity onPress={()=>navigation.navigate('SignUp')}>
                     <Text style={styles.textSign}>Get Started</Text>
@@ -49,7 +50,9 @@ const styles = StyleSheet.create({
   },
   logo: {
       width: height_logo,
-      height: height_logo
+      height: height_logo,
+      borderBottomLeftRadius: 10, 
+      borderBottomRightRadius: 10,
   },
   title: {
       color: '#05375a',
